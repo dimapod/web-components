@@ -55,11 +55,10 @@
     var importDoc = document.currentScript.ownerDocument;
     var proto = Object.create(HTMLElement.prototype);
     proto.createdCallback = function () {
-      var shadow = this.createShadowRoot();
       var template = importDoc.querySelector('#nameTagTemplate');
       var clone = template.content.cloneNode(true);
       clone.querySelector('img').src = this.getAttribute("poster");
-      shadow.appendChild(clone);
+      this.createShadowRoot().appendChild(clone);
     };
 
     document.registerElement("movie-item-insertion", {prototype: proto});
