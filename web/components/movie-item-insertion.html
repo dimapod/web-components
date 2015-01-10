@@ -1,0 +1,69 @@
+<html>
+<template id="nameTagTemplate">
+  <style>
+    .outer {
+      border: 1px solid grey;
+      border-radius: 2px;
+      width: 400px;
+      height: 74px;
+      display: inline-block;
+      padding: 2px;
+      position: relative;
+    }
+
+    .label {
+      display: inline-block;
+      vertical-align: top;
+      padding: 15px;
+    }
+
+    img {
+      height: 100%;
+    }
+
+    .title {
+      color: black;
+      font-family: "Marker Felt", cursive;
+      font-size: 20pt;
+    }
+
+    .rating {
+      position: absolute;
+      right: 10px;
+      top: 25px;
+      background: gray;
+      color: white;
+      border-radius: 15px;
+      padding: 5px;
+    }
+  </style>
+
+  <div class="outer">
+    <img alt="poster">
+    <div class="label">
+      <div>
+        <span class="title"><content select=".title"></content></span> <span class="year">(<content select=".year"></content>)</span>
+      </div>
+      <div class="genres"><content select=".genres"></content></div>
+    </div>
+    <span class="rating"><content select=".rating"></content></span>
+  </div>
+</template>
+
+<script>
+  (function () {
+    var importDoc = document.currentScript.ownerDocument;
+    var proto = Object.create(HTMLElement.prototype);
+    proto.createdCallback = function () {
+      var shadow = this.createShadowRoot();
+      var template = importDoc.querySelector('#nameTagTemplate');
+      var clone = template.content.cloneNode(true);
+      clone.querySelector('img').src = this.getAttribute("poster");
+      shadow.appendChild(clone);
+    };
+
+    document.registerElement("movie-item-insertion", {prototype: proto});
+  })();
+</script>
+
+</html>

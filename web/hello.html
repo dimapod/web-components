@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>Hello WebComponents</title>
+  <link rel="stylesheet" href="components/clock-face.css">
+
   <!--<script src="libs/document-register-element.js"></script>-->
   <script src="components/clock-face.js"></script>
   <script src="components/plop-button.js"></script>
@@ -10,6 +12,7 @@
 
   <link rel="import" href="components/name-badge.html"></link>
   <link rel="import" href="components/movie-item.html"></link>
+  <link rel="import" href="components/movie-item-insertion.html"></link>
 
   <style>
     .web-component {
@@ -50,7 +53,20 @@
 </div>
 
 <div class="web-component">
-  <movie-item title="The Avengers" year="2013" genres="Action, Adventure, Sci-Fi" rating="8.2" poster="http://ia.media-imdb.com/images/M/MV5BMTk2NTI1MTU4N15BMl5BanBnXkFtZTcwODg0OTY0Nw@@._V1_SY317_CR0,0,214,317_AL_.jpg">Movie</movie-item>
+  Movie-Item (using parameters):<br>
+  <movie-item title="The Avengers" year="2013" genres="Action, Adventure, Sci-Fi" rating="8.2" poster="http://ia.media-imdb.com/images/M/MV5BMTk2NTI1MTU4N15BMl5BanBnXkFtZTcwODg0OTY0Nw@@._V1_SY317_CR0,0,214,317_AL_.jpg">
+    <span class="title">The Avengers</span>
+  </movie-item>
+</div>
+
+<div class="web-component">
+  Movie-Item (using insertion points):<br>
+  <movie-item-insertion poster="http://ia.media-imdb.com/images/M/MV5BMTk2NTI1MTU4N15BMl5BanBnXkFtZTcwODg0OTY0Nw@@._V1_SY317_CR0,0,214,317_AL_.jpg">
+    <span class="title">The Avengers</span>
+    <span class="year">2013</span>
+    <span class="genres">Action, Adventure, Sci-Fi</span>
+    <span class="rating">8.2</span>
+  </movie-item-insertion>
 </div>
 
 </body>
