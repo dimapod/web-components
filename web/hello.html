@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hello WebComponents</title>
+  <!--<script src="libs/document-register-element.js"></script>-->
+  <script src="components/clock-face.js"></script>
+  <script src="components/plop-button.js"></script>
+  <script src="components/plop-template-button.js"></script>
+
+  <link rel="import" href="components/name-badge.html"></link>
+  <link rel="import" href="components/movie-item.html"></link>
+
+  <style>
+    .web-component {
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+
+
+<template id="plop-template">
+  <style>
+    b {
+      color: orange;
+      border: 1px solid;
+      padding: 5px;
+    }
+  </style>
+  <b>I'm in Shadow DOM. My markup was stamped from a &lt;template&gt;</b>
+</template>
+
+<h1>Hello Web Components</h1>
+
+<div class="web-component">
+  <plop-button></plop-button>
+</div>
+
+<div class="web-component">
+  <plop-template-button></plop-template-button>
+</div>
+
+<div class="web-component">
+  <clock-face></clock-face>
+</div>
+
+<div class="web-component">
+  <name-badge>Bob</name-badge>
+</div>
+
+<div class="web-component">
+  <movie-item title="The Avengers" year="2013" genres="Action, Adventure, Sci-Fi" rating="8.2" poster="http://ia.media-imdb.com/images/M/MV5BMTk2NTI1MTU4N15BMl5BanBnXkFtZTcwODg0OTY0Nw@@._V1_SY317_CR0,0,214,317_AL_.jpg">Movie</movie-item>
+</div>
+
+</body>
+</html>

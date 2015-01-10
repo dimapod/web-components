@@ -1,0 +1,96 @@
+<html>
+<template id="nameTagTemplate">
+  <style>
+    .outer {
+      border: 1px solid grey;
+      border-radius: 2px;
+      width: 400px;
+      height: 74px;
+      display: inline-block;
+      padding: 2px;
+      position: relative;
+    }
+
+    .label {
+      display: inline-block;
+      vertical-align: top;
+      padding: 15px;
+    }
+
+    img {
+      height: 100%;
+    }
+
+    .title {
+      color: black;
+      font-family: "Marker Felt", cursive;
+      font-size: 20pt;
+    }
+
+    .rating {
+      position: absolute;
+      right: 10px;
+      top: 25px;
+      background: gray;
+      color: white;
+      border-radius: 15px;
+      padding: 5px;
+    }
+
+  </style>
+  <div class="outer">
+    <img alt="poster">
+
+    <div class="label">
+      <div>
+        <span class="title"></span> <span class="year">(<span></span>)</span>
+      </div>
+      <div class="genres"></div>
+    </div>
+    <span class="rating">8.2</span>
+  </div>
+</template>
+
+<script>
+  (function () {
+    var importDoc = document.currentScript.ownerDocument;
+    var proto = Object.create(HTMLElement.prototype);
+    proto.createdCallback = function () {
+      this.readAttributes();
+      var shadow = this.createShadowRoot();
+      var template = importDoc.querySelector('#nameTagTemplate');
+      var content = template.content.cloneNode(true);
+
+      this.titleElem = content.querySelector('.title');
+      this.yearElem = content.querySelector('.year span');
+      this.genresElem = content.querySelector('.genres');
+      this.ratingElem = content.querySelector('.rating');
+      this.imgElem = content.querySelector('img');
+
+      this.update();
+      shadow.appendChild(content);
+    };
+
+    proto.readAttributes = function () {
+      this.data = {
+        title: this.getAttribute("title"),
+        year: this.getAttribute("year"),
+        genres: this.getAttribute("genres"),
+        rating: this.getAttribute("rating"),
+        poster: this.getAttribute("poster")
+      }
+    };
+
+    proto.update = function () {
+      this.titleElem.innerHTML = this.data.title;
+      this.yearElem.innerHTML = this.data.year;
+      this.genresElem.innerHTML = this.data.genres;
+      this.ratingElem.innerHTML = this.data.rating;
+      this.imgElem.src = this.data.poster;
+    };
+
+    document.registerElement("movie-item", {prototype: proto});
+  })();
+</script>
+
+</html>
