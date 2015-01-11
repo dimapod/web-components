@@ -10,13 +10,25 @@
   <script src="components/plop-button.js"></script>
   <script src="components/plop-template-button.js"></script>
 
-  <link rel="import" href="components/name-badge.html"></link>
-  <link rel="import" href="components/movie-item.html"></link>
-  <link rel="import" href="components/movie-item-insertion.html"></link>
+  <link rel="import" href="components/name-badge.html">
+  <link rel="import" href="components/movie-item.html">
+  <link rel="import" href="components/movie-item-insertion.html">
+  <link rel="import" href="components/movie-list.html">
+  <link rel="import" href="components/movie-list-insertion.html">
 
   <style>
     .web-component {
       margin: 20px;
+      width: 500px;
+    }
+
+    .web-component label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      padding: 4px;
+      border-top: 2px solid green;
+      border-bottom: 2px solid green;
     }
   </style>
 </head>
@@ -34,39 +46,55 @@
   <b>I'm in Shadow DOM. My markup was stamped from a &lt;template&gt;</b>
 </template>
 
-<h1>Hello Web Components</h1>
+<h1>XKE Web Components</h1>
 
 <div class="web-component">
+  <label>plop-button</label>
   <plop-button></plop-button>
 </div>
 
 <div class="web-component">
+  <label>plop-template-button</label>
   <plop-template-button></plop-template-button>
 </div>
 
 <div class="web-component">
+  <label>clock-face</label>
   <clock-face></clock-face>
 </div>
 
 <div class="web-component">
+  <label>name-badge</label>
   <name-badge>Bob</name-badge>
 </div>
 
 <div class="web-component">
-  Movie-Item (using parameters):<br>
-  <movie-item title="The Avengers" year="2013" genres="Action, Adventure, Sci-Fi" rating="8.2" poster="http://ia.media-imdb.com/images/M/MV5BMTk2NTI1MTU4N15BMl5BanBnXkFtZTcwODg0OTY0Nw@@._V1_SY317_CR0,0,214,317_AL_.jpg">
+  <label>movie-item (using arguments):</label>
+  <movie-item title="The Avengers" year="2013" genres="Action, Adventure, Sci-Fi" rating="8.2"
+              poster="http://ia.media-imdb.com/images/M/MV5BMTk2NTI1MTU4N15BMl5BanBnXkFtZTcwODg0OTY0Nw@@._V1_SY317_CR0,0,214,317_AL_.jpg">
     <span class="title">The Avengers</span>
   </movie-item>
 </div>
 
 <div class="web-component">
-  Movie-Item (using insertion points):<br>
-  <movie-item-insertion poster="http://ia.media-imdb.com/images/M/MV5BMTk2NTI1MTU4N15BMl5BanBnXkFtZTcwODg0OTY0Nw@@._V1_SY317_CR0,0,214,317_AL_.jpg">
+  <label>movie-item-insertion (using insertion points):</label>
+  <movie-item-insertion
+      poster="http://ia.media-imdb.com/images/M/MV5BMTk2NTI1MTU4N15BMl5BanBnXkFtZTcwODg0OTY0Nw@@._V1_SY317_CR0,0,214,317_AL_.jpg">
     <span class="title">The Avengers</span>
     <span class="year">2013</span>
     <span class="genres">Action, Adventure, Sci-Fi</span>
     <span class="rating">8.2</span>
   </movie-item-insertion>
+</div>
+
+<div class="web-component">
+  <label>Movie-List (using movie-item):</label>
+  <movie-list></movie-list>
+</div>
+
+<div class="web-component">
+  <label>Movie-List (using movie-item-insertion):</label>
+  <movie-list-insertion></movie-list-insertion>
 </div>
 
 </body>

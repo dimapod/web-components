@@ -14,7 +14,5 @@
 		});
 	};
 
-
 	document.registerElement('plop-template-button', {prototype: PlopButtonProto});
-
 }());

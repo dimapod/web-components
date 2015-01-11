@@ -4,9 +4,7 @@
     .outer {
       border: 1px solid grey;
       border-radius: 2px;
-      width: 400px;
       height: 74px;
-      display: inline-block;
       padding: 2px;
       position: relative;
     }
@@ -24,7 +22,7 @@
     .title {
       color: black;
       font-family: "Marker Felt", cursive;
-      font-size: 20pt;
+      font-size: 18pt;
     }
 
     .rating {
@@ -43,7 +41,8 @@
 
     <div class="label">
       <div>
-        <span class="title"></span> <span class="year">(<span></span>)</span>
+        <span class="title"></span>
+        <span class="year">(<span></span>)</span>
       </div>
       <div class="genres"></div>
     </div>
@@ -78,6 +77,13 @@
         genres: this.getAttribute("genres"),
         rating: this.getAttribute("rating"),
         poster: this.getAttribute("poster")
+      }
+    };
+
+    proto.attributeChangedCallback = function(attrName, oldVal, newVal) {
+      if ( /^(title|year|genres|rating|poster)$/.test( attrName ) ) {
+        this.readAttributes();
+        this.update();
       }
     };
 

@@ -1,0 +1,69 @@
+<html>
+<template id="componentTemplate">
+  <style>
+    movie-item {
+      margin-top: 2px;
+      display: block;
+    }
+  </style>
+
+  <div class="container">
+  </div>
+
+</template>
+
+<script>
+  (function () {
+
+    // TODO : fetch with ajax? Load from local file?
+    var mockData = [
+      {
+        title: 'Captain America: The First Avenger',
+        year: '2011',
+        genres: 'Action, Adventure, Sci-Fi',
+        rating: '6.8',
+        poster: 'http://ia.media-imdb.com/images/M/MV5BMTYzOTc2NzU3N15BMl5BanBnXkFtZTcwNjY3MDE3NQ@@._V1_SX214_AL_.jpg'
+      },
+      {
+        title: 'Thor',
+        year: '2011',
+        genres: 'Action, Adventure, Fantasy',
+        rating: '7.0',
+        poster: 'http://ia.media-imdb.com/images/M/MV5BMTYxMjA5NDMzNV5BMl5BanBnXkFtZTcwOTk2Mjk3NA@@._V1_SX214_AL_.jpg'
+      },
+      {
+        title: 'Iron Man',
+        year: '2008',
+        genres: 'Action, Adventure, Sci-Fi',
+        rating: '7.9',
+        poster: 'http://ia.media-imdb.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SX214_AL_.jpg'
+      }
+    ];
+
+
+    var importDoc = document.currentScript.ownerDocument;
+    var proto = Object.create(HTMLElement.prototype);
+
+    proto.createdCallback = function () {
+      var template = importDoc.querySelector('#componentTemplate');
+      var clone = template.content.cloneNode(true);
+      var container = clone.querySelector('.container');
+
+      mockData.forEach(function (movie) {
+        var movieItem = document.createElement('movie-item');
+        movieItem.setAttribute('title', movie.title);
+        movieItem.setAttribute('year', movie.year);
+        movieItem.setAttribute('genres', movie.genres);
+        movieItem.setAttribute('rating', movie.rating);
+        movieItem.setAttribute('poster', movie.poster);
+        container.appendChild(movieItem);
+      });
+
+      this.createShadowRoot().appendChild(clone);
+    };
+
+    document.registerElement("movie-list", {prototype: proto});
+  })();
+</script>
+
+</html>
