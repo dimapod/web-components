@@ -1,12 +1,10 @@
 <html>
-<template id="nameTagTemplate">
+<template id="componentTemplate">
   <style>
     .outer {
       border: 1px solid grey;
       border-radius: 2px;
-      width: 400px;
       height: 74px;
-      display: inline-block;
       padding: 2px;
       position: relative;
     }
@@ -24,7 +22,7 @@
     .title {
       color: black;
       font-family: "Marker Felt", cursive;
-      font-size: 20pt;
+      font-size: 18pt;
     }
 
     .rating {
@@ -55,10 +53,17 @@
     var importDoc = document.currentScript.ownerDocument;
     var proto = Object.create(HTMLElement.prototype);
     proto.createdCallback = function () {
-      var template = importDoc.querySelector('#nameTagTemplate');
+      var template = importDoc.querySelector('#componentTemplate');
       var clone = template.content.cloneNode(true);
-      clone.querySelector('img').src = this.getAttribute("poster");
+      this.imgElem = clone.querySelector('img');
+      this.imgElem.src = this.getAttribute("poster");
       this.createShadowRoot().appendChild(clone);
+    };
+
+    proto.attributeChangedCallback = function (attrName, oldVal, newVal) {
+      if (attrName === 'poster') {
+        this.imgElem.src = newVal;
+      }
     };
 
     document.registerElement("movie-item-insertion", {prototype: proto});
