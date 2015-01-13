@@ -48,7 +48,7 @@
 
 <h1>XKE Web Components</h1>
 
-<div class="web-component">
+<div class="web-component test123">
   <label>plop-button</label>
   <plop-button></plop-button>
 </div>
@@ -70,7 +70,7 @@
 
 <div class="web-component">
   <label>movie-item (using arguments):</label>
-  <movie-item title="The Avengers" year="2013" genres="Action, Adventure, Sci-Fi" rating="8.2"
+  <movie-item class="movie-item" title="The Avengers" year="2013" genres="Action, Adventure, Sci-Fi" rating="8.2"
               poster="http://ia.media-imdb.com/images/M/MV5BMTk2NTI1MTU4N15BMl5BanBnXkFtZTcwODg0OTY0Nw@@._V1_SY317_CR0,0,214,317_AL_.jpg">
     <span class="title">The Avengers</span>
   </movie-item>
@@ -96,6 +96,24 @@
   <label>Movie-List (using movie-item-insertion):</label>
   <movie-list-insertion></movie-list-insertion>
 </div>
+
+
+
+
+<script>
+  // Communication
+  document.addEventListener('build', function (event) {
+    console.log("Event>>>>", event);
+    document.querySelector('.movie-item').setAttribute('title', 'PLOP');
+  }, true);
+
+  // -------
+  document.addEventListener('build1', function (event) {
+    console.log("Event", event);
+  }, true);
+  document.querySelector('.test123').dispatchEvent(new Event('build1'));
+
+</script>
 
 </body>
 </html>
