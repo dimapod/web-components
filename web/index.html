@@ -15,6 +15,7 @@
   <link rel="import" href="components/movie-item-insertion.html">
   <link rel="import" href="components/movie-list.html">
   <link rel="import" href="components/movie-list-insertion.html">
+  <link rel="import" href="components/search-field.html">
 
   <style>
     .web-component {
@@ -97,6 +98,11 @@
   <movie-list-insertion></movie-list-insertion>
 </div>
 
+<div class="web-component">
+  <label>Search field:</label>
+  <search-field></search-field>
+</div>
+
 
 
 
@@ -112,6 +118,17 @@
     console.log("Event", event);
   }, true);
   document.querySelector('.test123').dispatchEvent(new Event('build1'));
+
+
+
+
+
+  document.addEventListener('searched', function (event) {
+    document.querySelector('movie-list-insertion').setAttribute('search', event.detail);
+  }, true);
+
+
+
 
 </script>
 
