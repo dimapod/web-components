@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Play Boom Beach</title>
+
+    <link rel="import" href="boom/boom-beach-slider.html">
+
+    <style>
+    </style>
+</head>
+<body>
+
+<h1>Play Boom Beach</h1>
+<!--
+<img src="img/logo.png">
+-->
+
+<style>
+    input {
+        padding: 5px;
+        margin-bottom: 10px;
+        width: 250px;
+        font-size: 1.2em;
+    }
+</style>
+
+<script>
+    document.addEventListener('switched', function (event) {
+        document.querySelector('input').value = event.detail;
+    }, true);
+</script>
+
+
+<input type="text"/>
+<boom-beach-slider></boom-beach-slider>
+
+
+<script>
+    var boomBeachSlider = document.querySelector('boom-beach-slider');
+    document.querySelector('input').addEventListener('input', function(event) {
+        boomBeachSlider.search(event.target.value);
+    });
+</script>
+
+</body>
+</html>
