@@ -1,0 +1,46 @@
+<html>
+<template id="nameTagTemplate">
+  <style>
+    div {
+      padding-right: 110px;
+      position: relative;
+    }
+    input {
+      width: 100%;
+      padding: 5px;
+    }
+    button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 90px;
+      height: 27px;
+    }
+  </style>
+  <div>
+    <input type="text"/>
+    <button>Find</button>
+  </div>
+</template>
+
+<script>
+  (function () {
+    var importDoc = document.currentScript.ownerDocument;
+    var proto = Object.create(HTMLElement.prototype);
+    proto.createdCallback = function () {
+      var content = importDoc.querySelector('#nameTagTemplate').content.cloneNode(true);
+
+      var button = content.querySelector('button');
+      var input = content.querySelector('input');
+
+      button.addEventListener('click', function() {
+        this.dispatchEvent(new CustomEvent('searched', {'detail': input.value}));
+      });
+      this.createShadowRoot().appendChild(content);
+    };
+
+    document.registerElement("search-field", {prototype: proto});
+  })();
+</script>
+
+</html>

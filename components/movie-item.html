@@ -70,6 +70,11 @@
       shadow.appendChild(content);
     };
 
+    proto.foo = function() {
+      alert('foo() called');
+    };
+
+
     proto.readAttributes = function () {
       this.data = {
         title: this.getAttribute("title"),

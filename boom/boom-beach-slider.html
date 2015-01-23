@@ -1,0 +1,71 @@
+<html>
+<template id="headquartersTemplate">
+  <style>
+
+    button {
+      height: 170px;
+      vertical-align: top;
+      font-size: 3em;
+      border-radius: 28px;
+      outline: none;
+      background: none;
+      border: none;
+      color: gray;
+    }
+
+    button:hover {
+      color: #000000;
+    }
+
+  </style>
+
+  <div>
+    <button class="previous">&olt;</button>
+    <img alt=""/>
+    <button class="next">&ogt;</button>
+  </div>
+</template>
+
+<script>
+  (function () {
+    var imgs = ["grenadier", "heavy", "medic", "rifleman", "tank", "warrior", "zooka"];
+    var index = 0;
+
+    var importDoc = document.currentScript.ownerDocument;
+    var proto = Object.create(HTMLElement.prototype);
+    proto.createdCallback = function () {
+      var template = importDoc.querySelector('#headquartersTemplate');
+      var clone = template.content.cloneNode(true);
+
+      proto.img = clone.querySelector('img');
+      proto.self = this;
+      proto.switch(0);
+
+      clone.querySelector('.previous').addEventListener('click', function (e) {
+        proto.switch(--index);
+      });
+      clone.querySelector('.next').addEventListener('click', function (e) {
+        proto.switch(++index);
+      });
+
+      this.createShadowRoot().appendChild(clone);
+    };
+
+    proto.switch = function (index) {
+      var name = imgs[Math.abs(index % imgs.length)];
+      proto.self.dispatchEvent(new CustomEvent('switched', {'detail': name}));
+      proto.img.src = 'boom/img/' + name + '.png';
+    };
+
+    proto.search = function (term) {
+      var termIndex = imgs.indexOf(term);
+      if (imgs.indexOf(term) !== -1) {
+        proto.switch(termIndex);
+      }
+    };
+
+    document.registerElement("boom-beach-slider", {prototype: proto});
+  })();
+</script>
+
+</html>

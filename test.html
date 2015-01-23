@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+  <link rel="import" href="components/name-badge.html">
+</head>
+<body class="theme-big">
+
+<style>
+  #nameTag::shadow .level-1 {
+    background: darkgray;
+  }
+
+/*
+  #nameTag::shadow name-badge::shadow .boilerplate {
+    color: blue;
+  }
+*/
+
+  #nameTag /deep/ .boilerplate {
+    color: lawngreen;
+  }
+
+</style>
+
+<div id="nameTag" class="btn">
+  <span>Tom</span>
+</div>
+
+<hr/>
+
+<div id="webElement">
+</div>
+
+
+
+<template id="nameTagTemplate">
+  <style>
+    :host { text-transform: uppercase; }
+    :host(.btn) { color: blue; }
+    :host(:hover) { color: red; }
+    :host-context(.theme-big) { font-size: 2em; }
+    :host-context(.theme-small) { font-size: .5em; }
+  </style>
+  <span class="level-1">My name is </span>
+  <content></content>
+  <name-badge>Bob</name-badge>
+</template>
+
+<script>
+  var shadow = document.querySelector('#nameTag').createShadowRoot();
+  var template = document.querySelector('#nameTagTemplate');
+  var clone = document.importNode(template.content, true);
+  shadow.appendChild(clone);
+</script>
+
+
+<!-- --------------------------------------------- -->
+
+<style>
+  #host {
+    --button-text-color: green;
+    --button-font: "Comic Sans MS", "Comic Sans", cursive;
+  }
+</style>
+<div id="host">Host node</div>
+<script>
+  var root = document.querySelector('#host').createShadowRoot();
+  root.innerHTML = '<style>' +
+  'div {' +
+  'color: var(--button-text-color, pink);' +
+  'font-family: var(--button-font);' +
+  '}' +
+  '</style>' +
+  '<div><content></content></div>';
+</script>
+
+
+
+
+</body>
+</html>
