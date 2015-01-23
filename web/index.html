@@ -52,7 +52,27 @@
 <div class="web-component test123">
   <label>plop-button</label>
   <plop-button></plop-button>
+  <br><br>
+  <button class="plopButtonAttrCom">Attr communication</button>
+  <button class="plopButtonMethodsCom">Method communication</button>
 </div>
+
+<script>
+  // Par attr
+  var buttonAttr = document.querySelector('.plopButtonAttrCom');
+  var plopButton = document.querySelector('plop-button');
+
+  buttonAttr.addEventListener('click', function(e) {
+    plopButton.setAttribute('newAttr', new Date().getTime());
+  });
+
+  // Par method
+  var buttonMethod = document.querySelector('.plopButtonMethodsCom');
+
+  buttonMethod.addEventListener('click', function(e) {
+    plopButton.foo('Test');
+  });
+</script>
 
 <div class="web-component">
   <label>plop-template-button</label>
